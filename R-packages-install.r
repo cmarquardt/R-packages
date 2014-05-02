@@ -65,6 +65,7 @@ packages <- c("DBI",
               "maps",
               "mapdata",
               "mapproj",
+              "ggmap",
               "EMD",
               "KernSmooth",
               "RUnit",
@@ -93,7 +94,6 @@ packages <- c("DBI",
               "labeling", 
               "spam", 
               "bitops", 
-              "compositions", 
               "robCompositions", 
               "sgeostat", 
               "fit.models", 
@@ -124,9 +124,20 @@ install.packages(packages, repos = "http://ftp5.gwdg.de/pub/misc/cran/")
 # 4. Install packages from R-forge
 # --------------------------------
 
-packages <- c("WRS")
+# The following is disabled for the moment as the package has disappeared from R-forge.
+# It can now be found at
+#
+#   https://github.com/nicebread/WRS
+#
+# and updated installation instructions are at
+#
+#   http://www.nicebread.de/installation-of-wrs-package-wilcox-robust-statistics/
+#
+# As I haven't really used this package, I'm disabling it, and will probably reconsider
+# it if it becomes available on CRAN.
 
-install.packages(packages, repos="http://R-Forge.R-project.org") 
+#packages <- c("WRS")
+#install.packages(packages, repos="http://R-Forge.R-project.org") 
 
 
 # 5. Reset environment variables

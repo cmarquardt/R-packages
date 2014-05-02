@@ -38,7 +38,6 @@
 # ---------------------------
 
 update.packages(ask = FALSE, repos = "http://ftp5.gwdg.de/pub/misc/cran/")
-# update.packages(repos = c("http://ftp5.gwdg.de/pub/misc/cran/", "http://R-Forge.R-project.org"))
 
 
 # 5. Reset environment variables
