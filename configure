@@ -584,7 +584,7 @@ PACKAGE_STRING='R-packages 0.1'
 PACKAGE_BUGREPORT='christian@marquardt.sc'
 PACKAGE_URL=''
 
-ac_unique_file="R-packages-update"
+ac_unique_file="R-packages-update.r"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
 RSCRIPT
