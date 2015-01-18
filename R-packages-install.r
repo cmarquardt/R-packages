@@ -114,7 +114,8 @@ packages <- c("DBI",
               "httr", 
               "RCurl", 
               "memoise", 
-              "whisker"
+              "whisker",
+              "RcppCNPy"
 )
 
 
