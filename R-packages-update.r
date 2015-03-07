@@ -22,22 +22,38 @@
 #       does the same manipulation of environment variables, 
 #       assuming that ORACLE_HOME is pointing to the
 #       installation place of an Oracle Instant client.
+#
+#       On Homebrew, some packages (in particular: jpeg) 
+#       require additional compiler options which are cab
+#       be passed into the R build system by setting the
+#       corresponding environment variables like PKG_CPPFLAGS
+#       (generic for R) or JPEG_LIBS (for jpeg).
 
 
 # 1. Environment variables (for the ROracle compilation)
 # ------------------------------------------------------
 
+# 1.1 ROracle
+# -----------
 # Note: The following lines are disabled as I don't have Oracle or it's C API installed.
 
 #oracle_home <- Sys.getenv("ORACLE_HOME")
 #Sys.setenv(OCI_LIB = oracle_home)
 #Sys.unsetenv("ORACLE_HOME")
 
+# 1.2 jpeg
+# --------
+
+prefix <- system("brew --prefix", intern = TRUE)
+
+Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
+Sys.setenv(JPEG_LIBS = paste("-L", prefix, "/lib", sep = ""))
+
 
 # 2. Update existing packages
 # ---------------------------
 
-update.packages(ask = FALSE, repos = "http://ftp5.gwdg.de/pub/misc/cran/")
+update.packages(ask = FALSE, repos = "http://cran.rstudio.com/")
 
 
 # 5. Reset environment variables
@@ -47,3 +63,6 @@ update.packages(ask = FALSE, repos = "http://ftp5.gwdg.de/pub/misc/cran/")
 
 #Sys.setenv(ORACLE_HOME = oracle_home)
 #Sys.unsetenv("OCI_LIB")
+
+Sys.unsetenv("JPEG_LIBS")
+Sys.unsetenv("PKG_CPPFLAGS")

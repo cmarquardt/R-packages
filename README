@@ -40,3 +40,10 @@ how to set up the successful compilation of ROracle.
 
 And of course, the list of packages useful in my work might not be useful
 for anyone else;-)
+
+Dependencies
+------------
+
+These scripts were created for a Mac OS-X environment using Homebrew.
+
+For some packages (ggmap, jpeg), the jpeg library is required.

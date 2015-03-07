@@ -22,73 +22,88 @@
 #       does the same manipulation of environment variables, 
 #       assuming that ORACLE_HOME is pointing to the
 #       installation place of an Oracle Instant client.
+#
+#       On Homebrew, some packages (in particular: jpeg) 
+#       require additional compiler options which are cab
+#       be passed into the R build system by setting the
+#       corresponding environment variables like PKG_CPPFLAGS
+#       (generic for R) or JPEG_LIBS (for jpeg).
 
 # 1. Environment variables (for the ROracle compilation)
 # ------------------------------------------------------
 
+# 1.1 ROracle
+# -----------
 # Note: The following lines are disabled as I don't have Oracle or it's C API installed.
 
 #oracle_home <- Sys.getenv("ORACLE_HOME")
 #Sys.setenv(OCI_LIB = oracle_home)
 #Sys.unsetenv("ORACLE_HOME")
 
+# 1.2 jpeg
+# --------
 
-# 2. Update existing packages
-# ---------------------------
+prefix <- system("brew --prefix", intern = TRUE)
 
-# update.packages(repos = "http://ftp5.gwdg.de/pub/misc/cran/")
+Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
+Sys.setenv(JPEG_LIBS = paste("-L", prefix, "/lib", sep = ""))
 
-
-# 3. Install packages from CRAN
+# 2. Install packages from CRAN
 # -----------------------------
 
-# Note 1: In the following list, everything after "plyr" is due to dependencies.
+# Note 1: Dependencies are not necessarily complete.
 # Note 2: The following packages are 'parked' as I currently have not installed
 #         the required database backends or C APIs: RMySQL, ROracle
 
-packages <- c("DBI",
-              "RSQLite",
-              "Hmisc",
-              "akima",
+packages <- c("Hmisc",         # Basic things
               "ctv",
-              "locfit",
-              "mice",
-              "mvoutlier",
+              "plyr",
+              "dplyr",
               "mvtnorm",
-              "robustbase",
+              "akima",         # Polynomial fitting & smoothing
+              "KernSmooth",
+              "locfit",
+              "mice",          # Multiple imputation
+              "robustbase",    # Robust statistics
               "robust",
               "rrcov",
               "rrcovNA",
               "rrcovHD",
-              "Rwave",
-              "ggplot2",
-              "maps",
+              "mvoutlier",
+              "lubridate",     # Time (series)
+              "xts",
+              "zoo",
+              "Rwave",         # Time-Frequency Analysis
+              "SynchWave",
+              "EMD",
+              "ggplot2",       # Plotting
+              "ggvis",
+              "shiny",
+              "maps",          # Maps
               "mapdata",
               "mapproj",
               "ggmap",
-              "EMD",
-              "KernSmooth",
-              "RUnit",
-              "testthat",
+              "devtools",      # Development tools
+              "packrat",
               "getopt",
               "optparse",
               "argparse",
-              "ncdf4",
-              "xts",
-              "zoo",
-              "knitr",
+              "RUnit",         # Test tools
+              "testthat",
+              "ncdf4",         # Data formats
+              "DBI",           # Data bases
+              "RSQLite",
+              "knitr",         # Documentation
+              "formatR", 
+              "markdown",
+              "rmarkdown", 
               "stringr",
               "roxygen2",
-              "devtools",
-              "packrat",
-              "lubridate",
-              "plyr",
-              "dplyr",
-              "colorspace", 
+              "colorspace",    # Dependencies
               "tensorA", 
               "energy", 
               "car", 
-              "RColorBrewer", 
+              "RColorBrewer",
               "dichromat", 
               "munsell", 
               "labeling", 
@@ -108,9 +123,6 @@ packages <- c("DBI",
               "proto", 
               "fields", 
               "evaluate", 
-              "formatR", 
-              "markdown",
-              "rmarkdown", 
               "brew", 
               "httr", 
               "RCurl", 
@@ -127,38 +139,21 @@ packages <- c("DBI",
               "Rcpp",
               "RcppCNPy",
               "iterators",
-              "foreach",
+              "foreach",        # Parallel processing
               "doParallel",
               "doRNG"
 )
 
-
 install.packages(packages, repos = "http://cran.rstudio.com/")
 
 
-# 4. Install packages from R-forge
-# --------------------------------
-
-# The following is disabled for the moment as the package has disappeared from R-forge.
-# It can now be found at
-#
-#   https://github.com/nicebread/WRS
-#
-# and updated installation instructions are at
-#
-#   http://www.nicebread.de/installation-of-wrs-package-wilcox-robust-statistics/
-#
-# As I haven't really used this package, I'm disabling it, and will probably reconsider
-# it if it becomes available on CRAN.
-
-#packages <- c("WRS")
-#install.packages(packages, repos="http://R-Forge.R-project.org") 
-
-
-# 5. Reset environment variables
+# 3. Reset environment variables
 # ------------------------------
 
 # Note: As before, the following lines are commented out as there is no Oracle C-API
 
 #Sys.setenv(ORACLE_HOME = oracle_home)
 #Sys.unsetenv("OCI_LIB")
+
+Sys.unsetenv("JPEG_LIBS")
+Sys.unsetenv("PKG_CPPFLAGS")
