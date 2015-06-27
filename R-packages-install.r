@@ -63,6 +63,7 @@ packages <- c("Hmisc",         # Basic things
               "akima",         # Polynomial fitting & smoothing
               "KernSmooth",
               "locfit",
+              "locpol",
               "mice",          # Multiple imputation
               "robustbase",    # Robust statistics
               "robust",
