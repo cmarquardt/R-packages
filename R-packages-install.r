@@ -59,6 +59,7 @@ packages <- c("Hmisc",         # Basic things
               "ctv",
               "plyr",
               "dplyr",
+              "tidyr",
               "mvtnorm",
               "akima",         # Polynomial fitting & smoothing
               "KernSmooth",
@@ -89,6 +90,7 @@ packages <- c("Hmisc",         # Basic things
               "getopt",
               "optparse",
               "argparse",
+              "Rccp",
               "RUnit",         # Test tools
               "testthat",
               "ncdf4",         # Data formats
