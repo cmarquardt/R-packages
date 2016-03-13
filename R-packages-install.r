@@ -75,6 +75,7 @@ packages <- c("Hmisc",         # Basic things
               "lubridate",     # Time (series)
               "xts",
               "zoo",
+              "astsa",
               "Rwave",         # Time-Frequency Analysis
               "SynchWave",
               "EMD",
