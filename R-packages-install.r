@@ -108,6 +108,7 @@ packages <- c("Hmisc",         # Basic things
               "rticles",
               "rmarkdown", 
               "roxygen2",
+              "futile.logger",
               "colorspace",    # Dependencies
               "tensorA", 
               "energy", 
