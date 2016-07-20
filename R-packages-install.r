@@ -60,11 +60,16 @@ packages <- c("Hmisc",         # Basic things
               "plyr",
               "dplyr",
               "tidyr",
+              "readr",
+              "stringr",
+              "lubridate",
+              "magrittr",
               "mvtnorm",
               "akima",         # Polynomial fitting & smoothing
               "KernSmooth",
               "locfit",
               "locpol",
+              "lpridge",
               "mice",          # Multiple imputation
               "robustbase",    # Robust statistics
               "robust",
@@ -72,8 +77,7 @@ packages <- c("Hmisc",         # Basic things
               "rrcovNA",
               "rrcovHD",
               "mvoutlier",
-              "lubridate",     # Time (series)
-              "xts",
+              "xts",           # Time series
               "zoo",
               "astsa",
               "Rwave",         # Time-Frequency Analysis
@@ -100,8 +104,9 @@ packages <- c("Hmisc",         # Basic things
               "knitr",         # Documentation
               "formatR", 
               "markdown",
+              "bookdown",
+              "rticles",
               "rmarkdown", 
-              "stringr",
               "roxygen2",
               "colorspace",    # Dependencies
               "tensorA", 
@@ -133,7 +138,6 @@ packages <- c("Hmisc",         # Basic things
               "memoise", 
               "whisker",
               "assertthat",
-              "magrittr",
               "lazyeval", 
               "BH", 
               "yaml",
