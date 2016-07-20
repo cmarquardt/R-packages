@@ -96,6 +96,7 @@ packages <- c("Hmisc",         # Basic things
               "optparse",
               "argparse",
               "Rccp",
+              "RcppCNPy",
               "RUnit",         # Test tools
               "testthat",
               "ncdf4",         # Data formats
@@ -139,14 +140,14 @@ packages <- c("Hmisc",         # Basic things
               "memoise", 
               "whisker",
               "assertthat",
-              "lazyeval", 
+              "lazyeval",
+              "lambda.r",
+              "futile.options",
               "BH", 
               "yaml",
               "highlight",
               "htmltools", 
               "caTools",
-              "Rcpp",
-              "RcppCNPy",
               "iterators",
               "foreach",        # Parallel processing
               "doParallel",
