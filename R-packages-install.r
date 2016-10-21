@@ -110,6 +110,13 @@ packages <- c("Hmisc",         # Basic things
               "rmarkdown", 
               "roxygen2",
               "futile.logger",
+              "repr",          # IRKernel for Jupyter Notebooks
+              "IRdisplay",
+              "evaluate", 
+              "crayon", 
+              "pbdZMQ",
+              "uuid",
+              "digest",
               "colorspace",    # Dependencies
               "tensorA", 
               "energy", 
@@ -155,6 +162,11 @@ packages <- c("Hmisc",         # Basic things
 )
 
 install.packages(packages, repos = "http://cran.rstudio.com/")
+
+# Once more: IRKernel for Jupyter Notebooks
+
+devtools::options(download.file.method = "libcurl")
+devtools::install_github("IRkernel/IRkernel")
 
 
 # 3. Reset environment variables
