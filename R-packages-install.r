@@ -34,7 +34,11 @@
 
 # 1.1 ROracle
 # -----------
-# Note: The following lines are disabled as I don't have Oracle or it's C API installed.
+# Note: The following lines require to have Oracle's Instant Client to be installed.
+# Note 2: The proper install of the ROracle package downloaded from CRAN in the
+#         current version (v1.3-1) doesn't work as there's an issue with the 
+#         distributed tarball (see https://community.oracle.com/thread/4014048
+#         for etails); for the time being, see R-oracle-install.r 
 
 #oracle_home <- Sys.getenv("ORACLE_HOME")
 #Sys.setenv(OCI_LIB = oracle_home)
@@ -45,8 +49,8 @@
 
 prefix <- system("brew --prefix", intern = TRUE)
 
-Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
-Sys.setenv(JPEG_LIBS = paste("-L", prefix, "/lib", sep = ""))
+#Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
+#Sys.setenv(JPEG_LIBS = paste("-L", prefix, "/lib", sep = ""))
 
 # 2. Install packages from CRAN
 # -----------------------------
@@ -172,7 +176,7 @@ devtools::install_github("IRkernel/IRkernel")
 # 3. Reset environment variables
 # ------------------------------
 
-# Note: As before, the following lines are commented out as there is no Oracle C-API
+# Note: As before, the following lines are for ROracle
 
 #Sys.setenv(ORACLE_HOME = oracle_home)
 #Sys.unsetenv("OCI_LIB")
