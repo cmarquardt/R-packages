@@ -99,7 +99,7 @@ packages <- c("Hmisc",         # Basic things
               "getopt",
               "optparse",
               "argparse",
-              "Rccp",
+              "Rcpp",
               "RcppCNPy",
               "RUnit",         # Test tools
               "testthat",
