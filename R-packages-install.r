@@ -169,7 +169,6 @@ install.packages(packages, repos = "http://cran.rstudio.com/")
 
 # Once more: IRKernel for Jupyter Notebooks
 
-devtools::options(download.file.method = "libcurl")
 devtools::install_github("IRkernel/IRkernel")
 
 
