@@ -19,11 +19,11 @@
 #          unset OCI_LIB
 #
 #       on the shell prior to building. The code below
-#       does the same manipulation of environment variables, 
+#       does the same manipulation of environment variables,
 #       assuming that ORACLE_HOME is pointing to the
 #       installation place of an Oracle Instant client.
 #
-#       On Homebrew, some packages (in particular: jpeg) 
+#       On Homebrew, some packages (in particular: jpeg)
 #       require additional compiler options which are cab
 #       be passed into the R build system by setting the
 #       corresponding environment variables like PKG_CPPFLAGS
@@ -36,9 +36,9 @@
 # -----------
 # Note: The following lines require to have Oracle's Instant Client to be installed.
 # Note 2: The proper install of the ROracle package downloaded from CRAN in the
-#         current version (v1.3-1) doesn't work as there's an issue with the 
+#         current version (v1.3-1) doesn't work as there's an issue with the
 #         distributed tarball (see https://community.oracle.com/thread/4014048
-#         for etails); for the time being, see R-oracle-install.r 
+#         for etails); for the time being, see R-oracle-install.r
 
 #oracle_home <- Sys.getenv("ORACLE_HOME")
 #Sys.setenv(OCI_LIB = oracle_home)
@@ -103,61 +103,62 @@ packages <- c("Hmisc",         # Basic things
               "RcppCNPy",
               "RUnit",         # Test tools
               "testthat",
-              "ncdf4",         # Data formats
+              "h5",            # Data formats
+              "ncdf4",
               "DBI",           # Data bases
               "RSQLite",
               "knitr",         # Documentation
-              "formatR", 
+              "formatR",
               "markdown",
               "bookdown",
               "rticles",
-              "rmarkdown", 
+              "rmarkdown",
               "roxygen2",
               "futile.logger",
               "repr",          # IRKernel for Jupyter Notebooks
               "IRdisplay",
-              "evaluate", 
-              "crayon", 
+              "evaluate",
+              "crayon",
               "pbdZMQ",
               "uuid",
               "digest",
               "colorspace",    # Dependencies
-              "tensorA", 
-              "energy", 
-              "car", 
+              "tensorA",
+              "energy",
+              "car",
               "RColorBrewer",
-              "dichromat", 
-              "munsell", 
-              "labeling", 
-              "spam", 
-              "bitops", 
-              "robCompositions", 
-              "sgeostat", 
-              "fit.models", 
-              "pcaPP", 
-              "norm", 
-              "pls", 
-              "spls", 
-              "digest", 
-              "gtable", 
-              "reshape2", 
-              "scales", 
-              "proto", 
-              "fields", 
-              "evaluate", 
-              "brew", 
-              "httr", 
-              "RCurl", 
-              "memoise", 
+              "dichromat",
+              "munsell",
+              "labeling",
+              "spam",
+              "bitops",
+              "robCompositions",
+              "sgeostat",
+              "fit.models",
+              "pcaPP",
+              "norm",
+              "pls",
+              "spls",
+              "digest",
+              "gtable",
+              "reshape2",
+              "scales",
+              "proto",
+              "fields",
+              "evaluate",
+              "brew",
+              "httr",
+              "RCurl",
+              "memoise",
               "whisker",
               "assertthat",
               "lazyeval",
               "lambda.r",
               "futile.options",
-              "BH", 
+              "BH",
               "yaml",
               "highlight",
-              "htmltools", 
+              "htmltools",
               "caTools",
               "iterators",
               "foreach",        # Parallel processing
