@@ -74,7 +74,7 @@ packages <- c("Hmisc",         # Basic things
               "shinydashboards",
               "DT",
               "htmlwidgets",
-              "Leaflet",
+              "leaflet",
               "akima",         # Polynomial fitting & smoothing
               "KernSmooth",
               "locfit",
