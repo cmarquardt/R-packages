@@ -5,7 +5,7 @@
 #
 # C. Marquardt, Darmstadt
 #
-# 02 February 2014
+# 07 May 2017
 #
 # Note: ROracle, if installed with Oracle Instant clients,
 #       requires the following:
