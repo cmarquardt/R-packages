@@ -61,14 +61,20 @@ prefix <- system("brew --prefix", intern = TRUE)
 
 packages <- c("Hmisc",         # Basic things
               "ctv",
-              "plyr",
               "dplyr",
-              "tidyr",
-              "readr",
-              "stringr",
+              "futile.logger",
               "lubridate",
               "magrittr",
+              "plyr",
+              "readr",
+              "stringr",
+              "tidyr",
               "mvtnorm",
+              "shiny",         # Web
+              "shinydashboards",
+              "DT",
+              "htmlwidgets",
+              "Leaflet",
               "akima",         # Polynomial fitting & smoothing
               "KernSmooth",
               "locfit",
@@ -107,14 +113,13 @@ packages <- c("Hmisc",         # Basic things
               "ncdf4",
               "DBI",           # Data bases
               "RSQLite",
-              "knitr",         # Documentation
+              "bookdown",      # Documentation
+              "knitr",
               "formatR",
               "markdown",
-              "bookdown",
-              "rticles",
               "rmarkdown",
+              "rticles",
               "roxygen2",
-              "futile.logger",
               "repr",          # IRKernel for Jupyter Notebooks
               "IRdisplay",
               "evaluate",
