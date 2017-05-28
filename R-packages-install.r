@@ -5,7 +5,7 @@
 #
 # C. Marquardt, Darmstadt
 #
-# 07 May 2017
+# 28 May 2017
 #
 # Note: ROracle, if installed with Oracle Instant clients,
 #       requires the following:
@@ -59,17 +59,50 @@ prefix <- system("brew --prefix", intern = TRUE)
 # Note 2: The following packages are 'parked' as I currently have not installed
 #         the required database backends or C APIs: RMySQL, ROracle
 
+# Note: RStudio's tidyverse contains the following core packages:
+#
+#          ggplot2,   for data visualisation.
+#          dplyr,     for data manipulation.
+#          tidyr,     for data tidying.
+#          readr,     for data import.
+#          purrr,     for functional programming.
+#          tibble,    for tibbles, a modern re-imagining of data frames.
+#
+#       Working with specific types of vectors:
+#
+#          hms,       for times.
+#          stringr,   for strings.
+#          lubridate, for date/times.
+#          forcats,   for factors.
+#
+#       Importing other types of data:
+#
+#          feather,   for sharing with Python and other languages.
+#          haven,     for SPSS, SAS and Stata files.
+#          httr,      for web apis.
+#          jsonlite   for JSON.
+#          readxl,    for .xls and .xlsx files.
+#          rvest,     for web scraping.
+#          xml2,      for XML.
+#
+#       Modelling
+#
+#          modelr,    for modelling within a pipeline
+#          broom,     for turning models into tidy data
+#
+#       And also these:
+#          magrittr,   for using pipelines in R,
+#          reprex,     for rendering bits of R code for sharing, e.g., on GitHub or StackOverflow,
+#          rstudioapi, for talking to RStudio,
+#          crayon,     for bringning color to the terminal
+#          boxes,      for drawing boxes in the terminal (with crayon).
+
 packages <- c("Hmisc",         # Basic things
               "ctv",
-              "dplyr",
               "futile.logger",
-              "lubridate",
-              "magrittr",
               "plyr",
-              "readr",
-              "stringr",
-              "tidyr",
               "mvtnorm",
+              "tidyverse",     # Tidyverse
               "shiny",         # Web
               "shinydashboards",
               "DT",
@@ -93,9 +126,9 @@ packages <- c("Hmisc",         # Basic things
               "Rwave",         # Time-Frequency Analysis
               "SynchWave",
               "EMD",
-              "ggplot2",       # Plotting
-              "ggvis",
+              "ggvis",         # Plotting
               "shiny",
+              "ggthemes",
               "maps",          # Maps
               "mapdata",
               "mapproj",
@@ -123,7 +156,6 @@ packages <- c("Hmisc",         # Basic things
               "repr",          # IRKernel for Jupyter Notebooks
               "IRdisplay",
               "evaluate",
-              "crayon",
               "pbdZMQ",
               "uuid",
               "digest",
@@ -152,7 +184,6 @@ packages <- c("Hmisc",         # Basic things
               "fields",
               "evaluate",
               "brew",
-              "httr",
               "RCurl",
               "memoise",
               "whisker",
