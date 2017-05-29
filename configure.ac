@@ -4,7 +4,7 @@
 # 1. Initialisation
 # -----------------
 
-AC_INIT(R-packages, 1.2, christian@marquardt.sc)
+AC_INIT(R-packages, 1.3, christian@marquardt.sc)
 AC_CONFIG_SRCDIR(R-packages-update.r)
 
 AM_INIT_AUTOMAKE(foreign)

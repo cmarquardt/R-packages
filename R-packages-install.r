@@ -5,9 +5,10 @@
 #
 # C. Marquardt, Darmstadt
 #
-# 28 May 2017
+# 29 May 2017
 #
-# Note: ROracle, if installed with Oracle Instant clients,
+# Note: ROracle is temporarily installed in a seperate script. However,
+#       ROracle, if installed with Oracle Instant clients,
 #       requires the following:
 #
 #          export OCI_LIB=$ORACLE_HOME
@@ -38,7 +39,7 @@
 # Note 2: The proper install of the ROracle package downloaded from CRAN in the
 #         current version (v1.3-1) doesn't work as there's an issue with the
 #         distributed tarball (see https://community.oracle.com/thread/4014048
-#         for etails); for the time being, see R-oracle-install.r
+#         for details); for the time being, see R-oracle-install.r
 
 #oracle_home <- Sys.getenv("ORACLE_HOME")
 #Sys.setenv(OCI_LIB = oracle_home)
@@ -56,6 +57,10 @@ prefix <- system("brew --prefix", intern = TRUE)
 # -----------------------------
 
 # Note 1: Dependencies are not necessarily complete.
+# Note 2: The official release of h5 is currently depending on an outdated HDF5
+#         release (before 1.10.1); build issues have however been fixed in the
+#         GitHub repository of the package. For the time being, it is therefore
+#         installed via GitHub.
 # Note 2: The following packages are 'parked' as I currently have not installed
 #         the required database backends or C APIs: RMySQL, ROracle
 
@@ -104,7 +109,7 @@ packages <- c("Hmisc",         # Basic things
               "mvtnorm",
               "tidyverse",     # Tidyverse
               "shiny",         # Web
-              "shinydashboards",
+              "shinydashboard",
               "DT",
               "htmlwidgets",
               "leaflet",
@@ -142,7 +147,7 @@ packages <- c("Hmisc",         # Basic things
               "RcppCNPy",
               "RUnit",         # Test tools
               "testthat",
-              "h5",            # Data formats
+              #"h5",            # Data formats - see below for h5
               "ncdf4",
               "DBI",           # Data bases
               "RSQLite",
@@ -203,6 +208,11 @@ packages <- c("Hmisc",         # Basic things
 )
 
 install.packages(packages, repos = "http://cran.rstudio.com/")
+
+# h5 workaround: With hdf 1.10.1, the HDF C++ API changed. This is fixed in the
+# github repo of h5, but no new version has yet bee rolled to CRAN. Hence:
+
+devtools::install_github("mannau/h5")
 
 # Once more: IRKernel for Jupyter Notebooks
 

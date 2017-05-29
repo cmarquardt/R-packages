@@ -5,7 +5,7 @@
 #
 # C. Marquardt, Darmstadt
 #
-# 02 February 2014
+# 29 May 2017
 #
 # Note: ROracle, if installed with Oracle Instant clients,
 #       requires the following:
@@ -19,11 +19,11 @@
 #          unset OCI_LIB
 #
 #       on the shell prior to building. The code below
-#       does the same manipulation of environment variables, 
+#       does the same manipulation of environment variables,
 #       assuming that ORACLE_HOME is pointing to the
 #       installation place of an Oracle Instant client.
 #
-#       On Homebrew, some packages (in particular: jpeg) 
+#       On Homebrew, some packages (in particular: jpeg)
 #       require additional compiler options which are cab
 #       be passed into the R build system by setting the
 #       corresponding environment variables like PKG_CPPFLAGS
@@ -37,9 +37,9 @@
 # -----------
 # Note: The following lines require Oracle's Instant Client to be installed.
 # Note 2: The proper install of the ROracle package downloaded from CRAN in the
-#         current version (v1.3-1) doesn't work as there's an issue with the 
+#         current version (v1.3-1) doesn't work as there's an issue with the
 #         distributed tarball (see https://community.oracle.com/thread/4014048
-#         for etails); for the time being, see R-oracle-install.r 
+#         for etails); for the time being, see R-oracle-install.r
 
 #oracle_home <- Sys.getenv("ORACLE_HOME")
 #Sys.setenv(OCI_LIB = oracle_home)
