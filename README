@@ -1,8 +1,8 @@
 R-packages
 ==========
 
-This packages provides a convenient way (for me!) to install and update 
-packages for the R Statistical Computing environment. It contains a 
+This packages provides a convenient way (for me!) to install and update
+packages for the R Statistical Computing environment. It contains a
 hardcoded list of R packages that I use; changes in that list will cause
 a version bump.
 
@@ -15,10 +15,10 @@ Installation proceeds as usual with
     make
     make install
 
-and installs a single script 
+and installs a single script
 
     R-packages-update
-    
+
 which - if run from the shell command line - will update all R packages
 in the current R installation. The script is intended to perform regular
 updates of installed R packages.
@@ -26,7 +26,7 @@ updates of installed R packages.
 A second make target,
 
     make install-packages
-    
+
 will install a hard-coded list of R packages; for details, see the list
 of packages to be installed in r-packages-install.r
 

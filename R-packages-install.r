@@ -134,10 +134,19 @@ packages <- c("Hmisc",         # Basic things
               "ggvis",         # Plotting
               "shiny",
               "ggthemes",
+              "hrbrthemes",
+              "sp",            # Spatial
+              "sf",
+              "raster",
+              "maptools",
+              "spacetime",
+              "lwgeom",
               "maps",          # Maps
               "mapdata",
               "mapproj",
               "ggmap",
+              "ggspatial",
+              "rasterVis",
               "devtools",      # Development tools
               "packrat",
               "getopt",
@@ -147,7 +156,7 @@ packages <- c("Hmisc",         # Basic things
               "RcppCNPy",
               "RUnit",         # Test tools
               "testthat",
-              #"h5",            # Data formats - see below for h5
+              "h5",            # Data formats
               "ncdf4",
               "DBI",           # Data bases
               "RSQLite",
@@ -209,10 +218,11 @@ packages <- c("Hmisc",         # Basic things
 
 install.packages(packages, repos = "http://cran.rstudio.com/")
 
-# h5 workaround: With hdf 1.10.1, the HDF C++ API changed. This is fixed in the
-# github repo of h5, but no new version has yet bee rolled to CRAN. Hence:
-
-devtools::install_github("mannau/h5")
+# h5 workaround: With hdf 1.10.1, the HDF C++ API changed. This was later fixed
+# in the CRAN version, but for a while h5 had to be installed from its GitHub
+# repo.
+#
+#devtools::install_github("mannau/h5")
 
 # Once more: IRKernel for Jupyter Notebooks
 
