@@ -19,11 +19,11 @@
 #          unset OCI_LIB
 #
 #       on the shell prior to building. The code below
-#       does the same manipulation of environment variables, 
+#       does the same manipulation of environment variables,
 #       assuming that ORACLE_HOME is pointing to the
 #       installation place of an Oracle Instant client.
 #
-#       On Homebrew, some packages (in particular: jpeg) 
+#       On Homebrew, some packages (in particular: jpeg)
 #       require additional compiler options which are cab
 #       be passed into the R build system by setting the
 #       corresponding environment variables like PKG_CPPFLAGS
@@ -46,7 +46,7 @@ Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
 # 2. Install ROracle from a local .tar.gz
 # ---------------------------------------
 
-install.packages('ROracle_1.3-2.tar.gz', repos = NULL)
+install.packages('@pkgdatadir@/ROracle_1.3-2.tar.gz', repos = NULL)
 
 # 3. Reset environment variables
 # ------------------------------

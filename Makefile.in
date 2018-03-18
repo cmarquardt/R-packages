@@ -20,6 +20,7 @@
 # 1. Useful things
 # ----------------
 
+
 VPATH = @srcdir@
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
@@ -133,7 +134,7 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(bindir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkgdatadir)"
 SCRIPTS = $(bin_SCRIPTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -154,8 +155,9 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
+DATA = $(pkgdata_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
-am__DIST_COMMON = $(srcdir)/Makefile.in README config.guess config.sub \
+am__DIST_COMMON = $(srcdir)/Makefile.in config.guess config.sub \
 	install-sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
@@ -260,15 +262,23 @@ SUFFIXES = .sh .r
 
 # 2. Scripts to be installed
 # --------------------------
-bin_SCRIPTS = R-packages-update
+bin_SCRIPTS = R-packages-install R-packages-update R-oracle-install
 
-# 3. Files to be cleaned
+# 3. Data Files
+# -------------
+pkgdata_DATA = ROracle_1.3-2.tar.gz
+
+# 4. Files to be cleaned
 # ----------------------
 CLEANFILES = $(bin_SCRIPTS)
 
-# 4. Files to be distributed
+# 5. Files to be distributed
 # --------------------------
-EXTRA_DIST = R-packages-install.R R-packages-update.R R-oracle-install.R ROracle_1.3-2.tar.gz
+EXTRA_DIST = R-packages-install.R R-packages-update.R R-oracle-install.R.in ROracle_1.3-2.tar.gz
+
+# 6. Substitution
+# ---------------
+do_subst = sed -e 's,[@]pkgdatadir[@],$(pkgdatadir),g'
 all: all-am
 
 .SUFFIXES:
@@ -341,6 +351,27 @@ uninstall-binSCRIPTS:
 	files=`for p in $$list; do echo "$$p"; done | \
 	       sed -e 's,.*/,,;$(transform)'`; \
 	dir='$(DESTDIR)$(bindir)'; $(am__uninstall_files_from_dir)
+install-pkgdataDATA: $(pkgdata_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(pkgdatadir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(pkgdatadir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pkgdatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pkgdatadir)" || exit $$?; \
+	done
+
+uninstall-pkgdataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(pkgdatadir)'; $(am__uninstall_files_from_dir)
 tags TAGS:
 
 ctags CTAGS:
@@ -516,9 +547,9 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-am
-all-am: Makefile $(SCRIPTS)
+all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkgdatadir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -573,7 +604,7 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-pkgdataDATA
 
 install-dvi: install-dvi-am
 
@@ -619,7 +650,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binSCRIPTS
+uninstall-am: uninstall-binSCRIPTS uninstall-pkgdataDATA
 
 .MAKE: install-am install-strip
 
@@ -632,28 +663,39 @@ uninstall-am: uninstall-binSCRIPTS
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-pkgdataDATA install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am tags-am uninstall uninstall-am \
-	uninstall-binSCRIPTS
+	uninstall-binSCRIPTS uninstall-pkgdataDATA
 
 .PRECIOUS: Makefile
 
 
-# 5. Install R packages
-# ---------------------
+# 6. Build install scripts
+# ------------------------
 
-install-packages:
-	$(RSCRIPT) R-packages-install.R
-	$(RSCRIPT) R-oracle-install.R
+R-packages-install:
+	cp R-packages-install.R $@
+	chmod a+x $@
 
-# 6. Build update script
+R-oracle-install:
+	$(do_subst) R-oracle-install.R.in > $@
+	chmod a+x $@
+
+# 7. Build update script
 # ----------------------
 
 R-packages-update:
 	cp R-packages-update.R $@
 	chmod a+x $@
+
+# 8. Old stuff
+# ------------
+
+#install-packages:
+#	$(RSCRIPT) R-packages-install.R
+#	$(RSCRIPT) R-oracle-install.R
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
