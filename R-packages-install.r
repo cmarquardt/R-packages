@@ -45,12 +45,17 @@
 #Sys.setenv(OCI_LIB = oracle_home)
 #Sys.unsetenv("ORACLE_HOME")
 
-# 1.2 jpeg
-# --------
+# 1.2 Header and library paths
+# ----------------------------
 
 prefix <- system("brew --prefix", intern = TRUE)
 
-#Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
+Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
+Sys.setenv(PKG_LIBS = paste("-L", prefix, "/lib", sep = ""))
+
+Sys.setenv(CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
+Sys.setenv(LDFLAGS = paste("-L", prefix, "/lib", sep = ""))
+
 #Sys.setenv(JPEG_LIBS = paste("-L", prefix, "/lib", sep = ""))
 
 # 2. Install packages from CRAN
@@ -121,6 +126,7 @@ packages <- c("Hmisc",         # Basic things
               "mice",          # Multiple imputation
               "robustbase",    # Robust statistics
               "robust",
+              "robustreg",
               "rrcov",
               "rrcovNA",
               "rrcovHD",
@@ -141,6 +147,8 @@ packages <- c("Hmisc",         # Basic things
               "maptools",
               "spacetime",
               "lwgeom",
+              "rgdal",
+              "rosm",
               "maps",          # Maps
               "mapdata",
               "mapproj",
@@ -158,6 +166,9 @@ packages <- c("Hmisc",         # Basic things
               "testthat",
               "h5",            # Data formats
               "ncdf4",
+              "rmatio",
+              "udunits2",      # Units
+              "units",
               "DBI",           # Data bases
               "RSQLite",
               "bookdown",      # Documentation
@@ -211,6 +222,8 @@ packages <- c("Hmisc",         # Basic things
               "htmltools",
               "caTools",
               "iterators",
+              "xfun",
+              "tinytex",
               "foreach",        # Parallel processing
               "doParallel",
               "doRNG"
@@ -226,8 +239,7 @@ install.packages(packages, repos = "http://cran.rstudio.com/")
 
 # Once more: IRKernel for Jupyter Notebooks
 
-devtools::install_github("IRkernel/IRkernel")
-
+devtools::install_github("IRkernel/IRkernel", force = TRUE)
 
 # 3. Reset environment variables
 # ------------------------------
@@ -237,5 +249,10 @@ devtools::install_github("IRkernel/IRkernel")
 #Sys.setenv(ORACLE_HOME = oracle_home)
 #Sys.unsetenv("OCI_LIB")
 
-Sys.unsetenv("JPEG_LIBS")
+#Sys.unsetenv("JPEG_LIBS")
+
+Sys.unsetenv("LDFLAGS")
+Sys.unsetenv("CPPFLAGS")
+
+Sys.unsetenv("PKG_LIBS")
 Sys.unsetenv("PKG_CPPFLAGS")

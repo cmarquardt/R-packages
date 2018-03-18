@@ -45,21 +45,23 @@
 #Sys.setenv(OCI_LIB = oracle_home)
 #Sys.unsetenv("ORACLE_HOME")
 
-
-# 1.2 jpeg
-# --------
+# 1.2 Header and library paths
+# ----------------------------
 
 prefix <- system("brew --prefix", intern = TRUE)
 
 Sys.setenv(PKG_CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
-Sys.setenv(JPEG_LIBS = paste("-L", prefix, "/lib", sep = ""))
+Sys.setenv(PKG_LIBS = paste("-L", prefix, "/lib", sep = ""))
 
+Sys.setenv(CPPFLAGS = paste("-I", prefix, "/include", sep = ""))
+Sys.setenv(LDFLAGS = paste("-L", prefix, "/lib", sep = ""))
+
+#Sys.setenv(JPEG_LIBS = paste("-L", prefix, "/lib", sep = ""))
 
 # 2. Update existing packages
 # ---------------------------
 
 update.packages(ask = FALSE, repos = "http://cran.rstudio.com/")
-
 
 # 5. Reset environment variables
 # ------------------------------
@@ -69,5 +71,8 @@ update.packages(ask = FALSE, repos = "http://cran.rstudio.com/")
 #Sys.setenv(ORACLE_HOME = oracle_home)
 #Sys.unsetenv("OCI_LIB")
 
-Sys.unsetenv("JPEG_LIBS")
+Sys.unsetenv("LDFLAGS")
+Sys.unsetenv("CPPFLAGS")
+
+Sys.unsetenv("PKG_LIBS")
 Sys.unsetenv("PKG_CPPFLAGS")
