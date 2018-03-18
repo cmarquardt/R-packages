@@ -28,15 +28,14 @@ A second make target,
     make install-packages
 
 will install a hard-coded list of R packages; for details, see the list
-of packages to be installed in r-packages-install.r
+of packages to be installed in `r-packages-install.R`.
 
 Caveats
 -------
 
-I currently do not use the ROracle interface to Oracle databases (which 
-requires the installation of the Oracle client software), but see the
-r-packages-install.r and r-packages-update.r scripts for instructions on
-how to set up the successful compilation of ROracle.
+There is a separate install script for `ROracle` which uses a patched
+version of the officially distributed source code package. See the
+`R-oracle-install.R` script for details.
 
 And of course, the list of packages useful in my work might not be useful
 for anyone else;-)
@@ -44,6 +43,15 @@ for anyone else;-)
 Dependencies
 ------------
 
-These scripts were created for a Mac OS-X environment using Homebrew.
+These scripts were created for a Mac OS-X environment using Homebrew. The
+following packages are required:
 
-For some packages (ggmap, jpeg), the jpeg library is required.
+ - `r`
+ - `netcdf`
+ - `jpeg`
+ - `gdal2`
+ - `nlopt`
+ - `udunits2`
+
+That that `gdal2` is currently not available from `homebrew-core`, but by
+tapping [`osgeo4mac`](https://github.com/OSGeo/homebrew-osgeo4mac).
