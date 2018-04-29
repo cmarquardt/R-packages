@@ -40,6 +40,10 @@
 #         current version (v1.3-1) doesn't work as there's an issue with the
 #         distributed tarball (see https://community.oracle.com/thread/4014048
 #         for details); for the time being, see R-oracle-install.r
+# Note 3: The proper installation of the RcppArmadillo package (and those depending
+#         on it, like robustreg, robustHD, and rrcovHD) fails if the brew version
+#         is actively linked. Unlinking armadillo before building the R packages
+#         and relinking it afterwards seem to help.
 
 #oracle_home <- Sys.getenv("ORACLE_HOME")
 #Sys.setenv(OCI_LIB = oracle_home)
@@ -62,14 +66,11 @@ Sys.setenv(LDFLAGS = paste("-L", prefix, "/lib", sep = ""))
 # -----------------------------
 
 # Note 1: Dependencies are not necessarily complete.
-# Note 2: The official release of h5 is currently depending on an outdated HDF5
-#         release (before 1.10.1); build issues have however been fixed in the
-#         GitHub repository of the package. For the time being, it is therefore
-#         installed via GitHub.
 # Note 2: The following packages are 'parked' as I currently have not installed
 #         the required database backends or C APIs: RMySQL, ROracle
 
-# Note: RStudio's tidyverse contains the following core packages:
+# Note: RStudio's tidyverse (www.tidyverse.org) contains and on import loads the
+#       following core packages:
 #
 #          ggplot2,   for data visualisation.
 #          dplyr,     for data manipulation.
@@ -77,13 +78,14 @@ Sys.setenv(LDFLAGS = paste("-L", prefix, "/lib", sep = ""))
 #          readr,     for data import.
 #          purrr,     for functional programming.
 #          tibble,    for tibbles, a modern re-imagining of data frames.
+#          stringr,   for strings.
+#          forcats,   for factors.
 #
-#       Working with specific types of vectors:
+#       The following packages support specific types of data:
 #
 #          hms,       for times.
-#          stringr,   for strings.
 #          lubridate, for date/times.
-#          forcats,   for factors.
+#          blob,      for storing blob (binary) data.
 #
 #       Importing other types of data:
 #
@@ -109,8 +111,6 @@ Sys.setenv(LDFLAGS = paste("-L", prefix, "/lib", sep = ""))
 
 packages <- c("Hmisc",         # Basic things
               "ctv",
-              "futile.logger",
-              "plyr",
               "mvtnorm",
               "tidyverse",     # Tidyverse
               "shiny",         # Web
@@ -119,7 +119,7 @@ packages <- c("Hmisc",         # Basic things
               "htmlwidgets",
               "leaflet",
               "akima",         # Polynomial fitting & smoothing
-              "KernSmooth",
+              #"KernSmooth",
               "locfit",
               "locpol",
               "lpridge",
@@ -155,27 +155,29 @@ packages <- c("Hmisc",         # Basic things
               "ggmap",
               "ggspatial",
               "rasterVis",
-              "devtools",      # Development tools
-              "packrat",
-              "getopt",
-              "optparse",
-              "argparse",
-              "Rcpp",
-              "RcppCNPy",
-              "RUnit",         # Test tools
-              "testthat",
-              "h5",            # Data formats
+              "reticulate",    # Python interfacing
+              "feather",       # Data formats
+              "h5",
               "ncdf4",
               "rmatio",
               "udunits2",      # Units
               "units",
-              "DBI",           # Data bases
+              #"DBI",          # Data bases
               "RSQLite",
+              "packrat",       # Development tools
+              "devtools",
+              "argparse",
+              "optparse",
+              "futile.logger",
+              "futile.options",
+              "getopt",
+              "RcppCNPy",
+              "RUnit",
               "bookdown",      # Documentation
-              "knitr",
+              #"knitr",
               "formatR",
-              "markdown",
-              "rmarkdown",
+              #"markdown",
+              #"rmarkdown",
               "rticles",
               "roxygen2",
               "repr",          # IRKernel for Jupyter Notebooks
@@ -184,6 +186,9 @@ packages <- c("Hmisc",         # Basic things
               "pbdZMQ",
               "uuid",
               "digest",
+              "foreach",       # Parallel processing
+              "doParallel",
+              "doRNG",
               "colorspace",    # Dependencies
               "tensorA",
               "energy",
@@ -215,7 +220,6 @@ packages <- c("Hmisc",         # Basic things
               "assertthat",
               "lazyeval",
               "lambda.r",
-              "futile.options",
               "BH",
               "yaml",
               "highlight",
@@ -223,10 +227,7 @@ packages <- c("Hmisc",         # Basic things
               "caTools",
               "iterators",
               "xfun",
-              "tinytex",
-              "foreach",        # Parallel processing
-              "doParallel",
-              "doRNG"
+              "tinytex"
 )
 
 install.packages(packages, repos = "http://cran.rstudio.com/")
