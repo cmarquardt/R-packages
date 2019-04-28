@@ -119,7 +119,6 @@ packages <- c("Hmisc",         # Basic things
               "htmlwidgets",
               "leaflet",
               "akima",         # Polynomial fitting & smoothing
-              #"KernSmooth",
               "locfit",
               "locpol",
               "lpridge",
@@ -131,6 +130,8 @@ packages <- c("Hmisc",         # Basic things
               "rrcovNA",
               "rrcovHD",
               "mvoutlier",
+              "RobStatTM",
+              "GSE",
               "xts",           # Time series
               "zoo",
               "astsa",
@@ -159,7 +160,6 @@ packages <- c("Hmisc",         # Basic things
               "feather",       # Data formats
               "h5",
               "ncdf4",
-              "rmatio",
               "udunits2",      # Units
               "units",
               #"DBI",          # Data bases
